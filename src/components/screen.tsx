@@ -1,35 +1,120 @@
-import { useState } from "react";
+import { exit } from "process";
+import { useState, useEffect, useRef } from "react";
 import { Stop } from "./logos";
 interface ScreenProps {
-  changeColor: (color_number: number) => void;
+  hundleOption: (option_number: number) => void;
+  option: number;
+  activeButton: number;
+  promodo: number;
 }
-const active: number[] = [0, 1, 2];
-const Screen = ({ changeColor }: ScreenProps) => {
-  const [activeButton, setActiveButton] = useState(active[0]);
+const Screen = ({
+  hundleOption,
+  option,
+  activeButton,
+  promodo,
+}: ScreenProps) => {
   const [stop, setStop] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [timer, setTimer] = useState(promodo * 60);
+  const temps = useRef(timer);
+  let min = Math.trunc(timer / 60);
+  let sec = timer % 60;
+  let paused = useRef(true);
+  let interval_id = useRef<any>(0);
+  const [minuts, setMinuts] = useState(min);
+  const [seconds, setSeconds] = useState(sec);
+
   const hundleClick = (color_number: number): void => {
-    changeColor(color_number);
-    setActiveButton(active[color_number]);
+    hundleOption(color_number);
   };
+
   const hundleStart = (): void => {
-    setStop(true);
+    if (stop === false) {
+      paused.current = false;
+      setStop(true);
+      startCount();
+    }
   };
   const hundleStop = (): void => {
-    console.log("stop");
+    paused.current = true;
     setStop(false);
     setShowAlert(true);
+    startCount();
   };
   const hundleAlert_can = () => {
-    console.log("cancel");
     setShowAlert(false);
+
+    paused.current = false;
+    setStop(true);
+    startCount();
   };
+
   const hundleAlert_ok = () => {
-    console.log("ok");
+    paused.current = true;
+    setStop(false);
     setShowAlert(false);
+    if (option !== 0) {
+      hundleOption(0);
+    } else {
+      hundleOption(1);
+    }
+    startCount();
   };
+  const renderMinuts = () => {
+    return <span>{minuts < 10 ? "0" + minuts : minuts}</span>;
+  };
+  const renderSeconds = () => {
+    return <span>{seconds < 10 ? "0" + seconds : seconds}</span>;
+  };
+  const renderTimer = () => {
+    return (
+      <>
+        <span>
+          {renderMinuts()}:{renderSeconds()}
+        </span>
+      </>
+    );
+  };
+  const hundleTime = (min: number, sec: number) => {
+    setMinuts(min);
+    setSeconds(sec);
+  };
+
+  const timerTest = () => {
+    temps.current = temps.current <= 0 ? 0 : temps.current - 1;
+    min = Math.trunc(temps.current / 60);
+    sec = temps.current % 60;
+    hundleTime(min, sec);
+    if (min <= 0 && sec <= 0) {
+      clearInterval(interval_id.current);
+      if (option !== 0) {
+        hundleOption(0);
+      } else {
+        hundleOption(1);
+      }
+    }
+  };
+
+  const startCount = () => {
+    if (paused.current === false) {
+      interval_id.current = setInterval(timerTest, 1000);
+    } else {
+      clearInterval(interval_id.current);
+    }
+  };
+
+  useEffect(() => {
+    setTimer(promodo * 60);
+    setMinuts(Math.trunc(timer / 60));
+    setSeconds(timer % 60);
+    paused.current = true;
+    temps.current = timer;
+    setStop(false);
+    clearInterval(interval_id.current);
+  }, [promodo, timer]);
   return (
     <div className="screen_container">
+      <div className="promo_timer"></div>
       <div className="counter_container">
         <div className="c_buttons_container">
           <div
@@ -58,7 +143,7 @@ const Screen = ({ changeColor }: ScreenProps) => {
           </div>
         </div>
         <div className="timer_container">
-          <span className="time">25: 00</span>
+          <span className="time">{renderTimer()}</span>
         </div>
         <div className="screen_buttons">
           <span onClick={hundleStart} className="screen_button">

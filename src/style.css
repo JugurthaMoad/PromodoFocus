@@ -29,9 +29,14 @@ Promo component
 }
 
 .promo_sub_container {
-  border: 1px solid white;
   width: 100%;
   height: fullheight;
+}
+
+.promo_timer {
+  width: 100%;
+  margin: 0px 0px 40px 0px;
+  border: 0.7px solid rgba(147, 145, 145, 0.815);
 }
 
 @media screen and (min-width: 660px) {
@@ -112,6 +117,8 @@ screen component
 .screen_container {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 .counter_container {
