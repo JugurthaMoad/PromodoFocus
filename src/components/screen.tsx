@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Stop } from "./logos";
+let path = "test2.mp3";
 interface ScreenProps {
   hundleOption: (option_number: number) => void;
   option: number;
@@ -23,6 +24,7 @@ const Screen = ({
   let param = useRef<any>(null);
   let date_start = useRef<number>(0);
   let interval_id = useRef<any>(0);
+  let audio = useRef(new Audio(path));
   const [minuts, setMinuts] = useState(min);
   const [seconds, setSeconds] = useState(sec);
   const [widthTimer, setWidth] = useState<number>(date_start.current);
@@ -119,12 +121,16 @@ const Screen = ({
     hundleTime(min, sec);
 
     if (min <= 0 && sec <= 0) {
+      audio.current.play();
       date_start.current = 0;
+
       clearInterval(interval_id.current);
       if (option !== 0) {
         hundleOption(0);
+        alert("Time to work");
       } else {
         hundleOption(1);
+        alert("time te take a break");
       }
     }
   };
