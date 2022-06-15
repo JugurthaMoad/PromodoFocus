@@ -34,11 +34,14 @@ Promo component
 }
 
 .promo_timer {
-  width: 100%;
-  margin: 0px 0px 40px 0px;
+  width: 400px;
+  margin: 10px 0px 30px 0px;
   border: 0.7px solid rgba(147, 145, 145, 0.815);
 }
-
+.promo_sub_timer {
+  position: relative;
+  border: 2px solid rgba(255, 0, 0, 0.596);
+}
 @media screen and (min-width: 660px) {
   .promo_sub_container {
     width: 580px;

@@ -1,4 +1,3 @@
-import { exit } from "process";
 import { useState, useEffect, useRef } from "react";
 import { Stop } from "./logos";
 interface ScreenProps {
@@ -15,17 +14,30 @@ const Screen = ({
 }: ScreenProps) => {
   const [stop, setStop] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [timer, setTimer] = useState(promodo * 60);
-  const temps = useRef(timer);
+  const [changeAlert, setChangeAlert] = useState(false);
+  const [timer, setTimer] = useState<number>(promodo * 60);
+  const temps = useRef<number>(timer);
   let min = Math.trunc(timer / 60);
   let sec = timer % 60;
   let paused = useRef(true);
+  let param = useRef<any>(null);
+  let date_start = useRef<number>(0);
   let interval_id = useRef<any>(0);
   const [minuts, setMinuts] = useState(min);
   const [seconds, setSeconds] = useState(sec);
-
+  const [widthTimer, setWidth] = useState<number>(date_start.current);
+  let style = {
+    width: widthTimer + "px",
+  };
   const hundleClick = (color_number: number): void => {
-    hundleOption(color_number);
+    if (temps.current - timer === 0) {
+      hundleOption(color_number);
+    } else {
+      param.current = color_number;
+      setChangeAlert(true);
+      paused.current = true;
+      startCount();
+    }
   };
 
   const hundleStart = (): void => {
@@ -60,6 +72,23 @@ const Screen = ({
     }
     startCount();
   };
+  const hundleChange_ok = () => {
+    if (param.current !== null) {
+      paused.current = true;
+      hundleOption(param.current);
+      param.current = null;
+      setChangeAlert(false);
+      startCount();
+    }
+  };
+  const hundleChange_can = () => {
+    if (param.current) {
+      paused.current = false;
+      param.current = null;
+      setChangeAlert(false);
+      startCount();
+    }
+  };
   const renderMinuts = () => {
     return <span>{minuts < 10 ? "0" + minuts : minuts}</span>;
   };
@@ -84,8 +113,13 @@ const Screen = ({
     temps.current = temps.current <= 0 ? 0 : temps.current - 1;
     min = Math.trunc(temps.current / 60);
     sec = temps.current % 60;
+    date_start.current += 400 / timer;
+
+    setWidth(date_start.current);
     hundleTime(min, sec);
+
     if (min <= 0 && sec <= 0) {
+      date_start.current = 0;
       clearInterval(interval_id.current);
       if (option !== 0) {
         hundleOption(0);
@@ -109,12 +143,16 @@ const Screen = ({
     setSeconds(timer % 60);
     paused.current = true;
     temps.current = timer;
+    date_start.current = 0;
+    setWidth(date_start.current);
     setStop(false);
     clearInterval(interval_id.current);
   }, [promodo, timer]);
   return (
     <div className="screen_container">
-      <div className="promo_timer"></div>
+      <div className="promo_timer">
+        <div className="promo_sub_timer" style={style}></div>
+      </div>
       <div className="counter_container">
         <div className="c_buttons_container">
           <div
@@ -169,6 +207,19 @@ const Screen = ({
               Annuler
             </span>
             <span onClick={hundleAlert_ok} className="alert_button_ok">
+              Ok
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className={changeAlert ? " alert_container" : "hide"}>
+        <div className="alert">
+          <p>The timer is still running, are you sure you want to switch?</p>
+          <div className="alert_buttons_container">
+            <span onClick={hundleChange_can} className="alert_button_can">
+              Annuler
+            </span>
+            <span onClick={hundleChange_ok} className="alert_button_ok">
               Ok
             </span>
           </div>
