@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Stop } from "./logos";
+import Tasks from "./tasks";
 let path = "test2.mp3";
 interface ScreenProps {
   hundleOption: (option_number: number) => void;
@@ -211,6 +212,9 @@ const Screen = ({
           </span>
         </div>
       </div>
+
+      <Tasks option={option} />
+
       <div className={showAlert ? " alert_container" : "hide"}>
         <div className="alert">
           <p>

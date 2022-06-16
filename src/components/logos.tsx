@@ -2,6 +2,69 @@ interface LogoProps {
   className?: string;
 }
 
+export const Done = () => {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        role="img"
+        width="1.3em"
+        height="1.3em"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 512 512"
+      >
+        <path
+          fill="#777"
+          d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208s208-93.31 208-208S370.69 48 256 48Zm48.19 121.42l24.1 21.06l-73.61 84.1l-24.1-23.06ZM191.93 342.63L121.37 272L144 249.37L214.57 320Zm65 .79L185.55 272l22.64-22.62l47.16 47.21l111.13-127.17l24.1 21.06Z"
+        />
+      </svg>
+    </div>
+  );
+};
+
+export const Add = () => {
+  return (
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        role="img"
+        width="1.3em"
+        height="1.3em"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 32 32"
+      >
+        <path
+          fill="white"
+          d="M16 2A14.172 14.172 0 0 0 2 16a14.172 14.172 0 0 0 14 14a14.172 14.172 0 0 0 14-14A14.172 14.172 0 0 0 16 2Zm8 15h-7v7h-2v-7H8v-2h7V8h2v7h7Z"
+        />
+        <path fill="none" d="M24 17h-7v7h-2v-7H8v-2h7V8h2v7h7v2z" />
+      </svg>
+    </div>
+  );
+};
+export const Options = (props: LogoProps) => {
+  return (
+    <div>
+      <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        role="img"
+        width="1.3em"
+        height="1.2em"
+        preserveAspectRatio="xMidYMid meet"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="#f8f8f8"
+          d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0zm0-6a2 2 0 1 0 4 0a2 2 0 0 0-4 0zm0 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0z"
+        />
+      </svg>
+    </div>
+  );
+};
 export const Logo = (props: LogoProps) => {
   return (
     <div>
