@@ -16,6 +16,7 @@ const Screen = ({
   const [stop, setStop] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [changeAlert, setChangeAlert] = useState(false);
+  const [finishAlert, setFinish] = useState(false);
   const [timer, setTimer] = useState<number>(promodo * 60);
   const temps = useRef<number>(timer);
   let min = Math.trunc(timer / 60);
@@ -24,6 +25,7 @@ const Screen = ({
   let param = useRef<any>(null);
   let date_start = useRef<number>(0);
   let interval_id = useRef<any>(0);
+  let text = useRef<any>("");
   let audio = useRef(new Audio(path));
   const [minuts, setMinuts] = useState(min);
   const [seconds, setSeconds] = useState(sec);
@@ -41,7 +43,12 @@ const Screen = ({
       startCount();
     }
   };
-
+  const hundleFinish = () => {
+    setFinish(!finishAlert);
+  };
+  const hundleAlertFinish = () => {
+    hundleFinish();
+  };
   const hundleStart = (): void => {
     if (stop === false) {
       paused.current = false;
@@ -127,10 +134,12 @@ const Screen = ({
       clearInterval(interval_id.current);
       if (option !== 0) {
         hundleOption(0);
-        alert("Time to work");
+        text.current = "Time to work";
+        hundleAlertFinish();
       } else {
         hundleOption(1);
-        alert("time te take a break");
+        text.current = "time te take a break";
+        hundleAlertFinish();
       }
     }
   };
@@ -229,6 +238,15 @@ const Screen = ({
               Ok
             </span>
           </div>
+        </div>
+      </div>
+      <div className={finishAlert ? " alert_container" : "hide"}>
+        <div className="alert">
+          coucou
+          <p>{text.current}</p>
+          <span onClick={hundleFinish} className="alert_button_ok">
+            Ok
+          </span>
         </div>
       </div>
     </div>
