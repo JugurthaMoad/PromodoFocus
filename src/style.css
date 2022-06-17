@@ -320,7 +320,7 @@ Task component
 }
 .tasks_options {
   position: absolute;
-
+  z-index: 888;
   margin-top: 10px;
   background-color: rgba(255, 255, 255, 0.955);
   color: rgb(21, 21, 21);
@@ -458,14 +458,21 @@ Task component
   width: 100%;
   list-style-type: none;
   height: 60px;
-  background-color: rgb(228, 225, 225);
+  background-color: rgba(228, 225, 225, 0.309);
 }
 
 .task_container {
   display: flex;
+  width: 100%;
   font-size: 1.3rem;
-  gap: 3px;
+  gap: 10px;
 }
 .done {
   text-decoration: line-through;
+}
+.notDone {
+  text-decoration: none;
+}
+._container:hover {
+  cursor: pointer;
 }

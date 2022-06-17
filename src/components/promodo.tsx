@@ -12,7 +12,7 @@ const Promodo = () => {
   const [option, setOption] = useState(options[0]);
   const [color, setColor] = useState(colors[0]);
   const [activeButton, setActiveButton] = useState(active[0]);
-  const [work, setWork] = useState(20);
+  const [work, setWork] = useState(2);
   const [shortBreak, setShort] = useState(1);
   const [longBreak, setLong] = useState(2);
   const choices: number[] = [work, shortBreak, longBreak];
@@ -45,6 +45,7 @@ const Promodo = () => {
     setTime(promodo * 60);
     setMinuts(time / 60);
     setSeconds(time % 60);
+    console.log("promodo = ", promodo);
   }, [activeButton, color, choice, promodo, time, stopTimer]);
   return (
     <div id="promo" className="promo_container">

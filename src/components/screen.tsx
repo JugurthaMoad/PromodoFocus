@@ -18,6 +18,7 @@ const Screen = ({
   const [showAlert, setShowAlert] = useState(false);
   const [changeAlert, setChangeAlert] = useState(false);
   const [finishAlert, setFinish] = useState(false);
+  const status = useRef<boolean>(false);
   const [timer, setTimer] = useState<number>(promodo * 60);
   const temps = useRef<number>(timer);
   let min = Math.trunc(timer / 60);
@@ -54,6 +55,7 @@ const Screen = ({
     if (stop === false) {
       paused.current = false;
       setStop(true);
+      status.current = false; // at the start
       startCount();
     }
   };
@@ -131,13 +133,13 @@ const Screen = ({
     if (min <= 0 && sec <= 0) {
       audio.current.play();
       date_start.current = 0;
-
       clearInterval(interval_id.current);
       if (option !== 0) {
         hundleOption(0);
         text.current = "Time to work";
         hundleAlertFinish();
       } else {
+        status.current = true;
         hundleOption(1);
         text.current = "time te take a break";
         hundleAlertFinish();
@@ -213,7 +215,7 @@ const Screen = ({
         </div>
       </div>
 
-      <Tasks option={option} />
+      <Tasks option={option} status={status.current} />
 
       <div className={showAlert ? " alert_container" : "hide"}>
         <div className="alert">
