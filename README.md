@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+<h3>Promofocus.io with TypeScript and ReactJS </h3>
+<h3>Screen Shots :</h3>
+<h4>Small screens:</h4>
+<img src=https://user-images.githubusercontent.com/96316074/174449589-fa45d709-89dd-4f1f-8939-517b93f187e8.png />
+<h4> Other screens:</h4>
+<img src="https://user-images.githubusercontent.com/96316074/174449591-32f739fe-ae98-4d88-aa27-2014702ca6ba.png"/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<h3>Table of Contents: </h3>
+<ul>
+  <li>Description of the project </li>
+  <li>What i did</li>
+  <li>What I learned</li>
+  <li>Run the App</li>
+  </ul>
+  
+  <hr/>
+  
+   <h3>Description of the project :</h3>
+  <p>This project is about creating a copy of pomofocus web site with the use of :</p>
+  
+  <img src="https://skills.thijs.gg/icons?i=git,ts,react,css&theme=light"/>
+  
+  
+   <h3>What I did : </h3>
+ <p> I decided to make a copy of the promofocus site, and add a new feature: each finished task is crossed out automatically </p>
+  <br/>
+  <hr width="50%"/>
+  <h3>What I learned: </h3>
+  This project allowed me to learn ReactJS Hooks such as "UseRef" by using it as a simple variable to store data and not lose it value after each rendering , and some cool principles such as " Conditional Rendering" to hide or show elements, "Lifting the state up" to have a single source of trouth, also i learned how to combine Components principle and SVG's to create a reusible icons and the use of the spread operator to copy props :sunglasses::sunglasses:. I also learned <img src="https://skills.thijs.gg/icons?i=ts&theme=light"/> and how to think like problem solver. 
+  
+ <hr width="50%"/>
+ 
+<h3>Run the App: </h3>
+<ul>
+  <li>
+    npm start
+  </li>
+  <li>
+    Open http://localhost:3000 to view it in your browser.
+  </li>
+  </ul>
+ <br />
