@@ -12,9 +12,10 @@ const Promodo = () => {
   const [option, setOption] = useState(options[0]);
   const [color, setColor] = useState(colors[0]);
   const [activeButton, setActiveButton] = useState(active[0]);
-  const [work, setWork] = useState(2);
-  const [shortBreak, setShort] = useState(1);
-  const [longBreak, setLong] = useState(2);
+  const [work, setWork] = useState(25);
+  const [shortBreak, setShort] = useState(5);
+  const [longBreak, setLong] = useState(15);
+  const [update, setUpdate] = useState(false);
   const choices: number[] = [work, shortBreak, longBreak];
   const [choice, setChoice] = useState(choices[0]);
   const [promodo, setPromodo] = useState(choice); // minuts for promodo
@@ -24,6 +25,7 @@ const Promodo = () => {
   const [minuts, setMinuts] = useState(Math.trunc(time / 60));
   const [seconds, setSeconds] = useState(time % 60);
   const [stopTimer, setStopTimer] = useState(false);
+  console.log("work = ", work);
   const changeColor = (color_number: number) => {
     setColor(colors[color_number]);
   };
@@ -39,18 +41,32 @@ const Promodo = () => {
   const hundleStopTimer = (stop: boolean) => {
     setStopTimer(stop);
   };
+  const changeWork = (time: number) => {
+    changeActiveButton(0);
+    setWork(time);
+  };
+  const changeShort = (time: number) => {
+    setShort(time);
+  };
+  const changeLong = (time: number) => {
+    setLong(time);
+  };
   useEffect(() => {
     document.documentElement.style.setProperty("--color_background", color);
     setPromodo(choice);
     setTime(promodo * 60);
     setMinuts(time / 60);
     setSeconds(time % 60);
-    console.log("promodo = ", promodo);
-  }, [activeButton, color, choice, promodo, time, stopTimer]);
+  }, [activeButton, color, choice, promodo, time]);
   return (
     <div id="promo" className="promo_container">
       <div className="promo_sub_container">
-        <NavBar title="Coucou navbar" />
+        <NavBar
+          title="Coucou navbar"
+          setWork={changeWork}
+          setShort={changeShort}
+          setLong={changeLong}
+        />
         <Screen
           hundleOption={hundleOption}
           option={option}

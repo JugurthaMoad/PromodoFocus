@@ -20,6 +20,7 @@ const Tasks: FunctionComponent<TasksProps> = ({ option, status }) => {
   const task_not_finished = useRef<any>([]);
   const [updtate, setUpdate] = useState(false); // to update te frame
   const id_tasks = useRef<number>(0);
+  const [active_btn, setActive_btn] = useState(false);
   const n_work = useRef<number>(0);
   const [st, setSt] = useState(status);
   const hundleOption = (option: number) => {
@@ -35,7 +36,6 @@ const Tasks: FunctionComponent<TasksProps> = ({ option, status }) => {
     });
     n_work.current = 0;
     setTasks(tab);
-    console.log("tasjs ) ", tasks);
   };
   const timesWork = () => {
     if (status === true) {
@@ -62,9 +62,8 @@ const Tasks: FunctionComponent<TasksProps> = ({ option, status }) => {
   const addTask_not_finished = () => {
     let tab = tasks.filter((task: task) => task.done === false);
     task_not_finished.current = { ...tab };
-    console.log("finish = ", task_not_finished.current);
+
     setUpdate(!updtate);
-    // console.log("tasks not finished = ", task_not_finished);
   };
   const clearAllTasks = () => {
     let tab: any[] = [];
@@ -117,7 +116,13 @@ const Tasks: FunctionComponent<TasksProps> = ({ option, status }) => {
     addTask(t);
     hundleClose();
   };
-
+  const hundleChange = () => {
+    if (inputRef.current.value === "") {
+      setActive_btn(false);
+    } else {
+      setActive_btn(true);
+    }
+  };
   const hundleDoneStatus = (id_task: number) => {
     const tab = tasks;
     tab.forEach((task: task) => {
@@ -158,7 +163,7 @@ const Tasks: FunctionComponent<TasksProps> = ({ option, status }) => {
   useEffect(() => {
     setSt(status);
     addTask_not_finished();
-    console.log("St = ", st);
+
     timesWork();
     setUpdate(!updtate);
   }, [st, status]);
@@ -193,6 +198,7 @@ const Tasks: FunctionComponent<TasksProps> = ({ option, status }) => {
         <div className={showTasks ? "task_add_form" : "hide"}>
           <input
             ref={inputRef}
+            onChange={hundleChange}
             type="text"
             autoFocus
             className="task_input"
@@ -216,7 +222,10 @@ const Tasks: FunctionComponent<TasksProps> = ({ option, status }) => {
             <span onClick={hundleClose} className="task_add_b">
               Cancel
             </span>
-            <span onClick={hundleAddTask} className="task_add_b">
+            <span
+              onClick={active_btn ? hundleAddTask : () => {}}
+              className={active_btn ? "task_add_b" : "btn_disabled"}
+            >
               Save
             </span>
           </div>

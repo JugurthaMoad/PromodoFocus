@@ -34,7 +34,7 @@ Promo component
 }
 
 .promo_timer {
-  width: 400px;
+  width: 200px;
   margin: 10px 0px 30px 0px;
   border: 0.7px solid rgba(147, 145, 145, 0.815);
 }
@@ -111,7 +111,64 @@ Nav Bar component
   justify-content: center;
   gap: 10px;
 }
+.setting_container {
+  position: relative;
+}
+.setting_sub_container {
+  position: absolute;
+  right: 0px;
+  display: block;
+  width: 250px;
+  height: 250px;
+  margin-top: 10px;
+  border-radius: 5px;
+  z-index: 999;
+  background-color: white;
+  color: black;
+  font-size: 1.3rem;
+  padding: 10px;
+}
+.setting_menu {
+  width: 100%;
+  padding: 4px 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid gray;
+  color: gray;
+}
+.setting_close {
+  display: block;
+  text-align: right;
+  float: right;
+}
+.setting_options {
+  color: gray;
+  margin-bottom: 5px;
+}
+.setting_options input {
+  display: block;
+  width: 70px;
+  padding: 4px;
+}
 
+.setting_btn {
+  display: block;
+  width: 30px;
+  border-radius: 5px;
+  float: right;
+  padding: 5px;
+  background-color: gray;
+}
+.setting_btn_dis {
+  display: block;
+  width: 30px;
+  border-radius: 5px;
+  float: right;
+  padding: 5px;
+  background-color: gray;
+  opacity: 0.4;
+}
 /*
 screen component 
 
@@ -435,7 +492,12 @@ Task component
   background-color: rgb(228, 226, 226);
   border-radius: 5px;
 }
-
+.btn_disabled {
+  opacity: 0.5;
+  padding: 10px;
+  background-color: rgb(228, 226, 226);
+  border-radius: 5px;
+}
 .task_add_b:hover {
   cursor: pointer;
 }

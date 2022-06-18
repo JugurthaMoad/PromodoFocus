@@ -125,7 +125,7 @@ const Screen = ({
     temps.current = temps.current <= 0 ? 0 : temps.current - 1;
     min = Math.trunc(temps.current / 60);
     sec = temps.current % 60;
-    date_start.current += 400 / timer;
+    date_start.current += 200 / timer;
 
     setWidth(date_start.current);
     hundleTime(min, sec);
