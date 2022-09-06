@@ -38,5 +38,6 @@
   <li>
     Open http://localhost:3000 to view it in your browser.
   </li>
+  <li> <a href="https://focusu.herokuapp.com/" target="blank">Online version</a> </li>
   </ul>
  <br />
