@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PromodoFocus/static/css/main.07116887.css",
+    "main.js": "/PromodoFocus/static/js/main.0efa9d86.js",
+    "static/js/787.0c2915ca.chunk.js": "/PromodoFocus/static/js/787.0c2915ca.chunk.js",
+    "index.html": "/PromodoFocus/index.html",
+    "main.07116887.css.map": "/PromodoFocus/static/css/main.07116887.css.map",
+    "main.0efa9d86.js.map": "/PromodoFocus/static/js/main.0efa9d86.js.map",
+    "787.0c2915ca.chunk.js.map": "/PromodoFocus/static/js/787.0c2915ca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07116887.css",
+    "static/js/main.0efa9d86.js"
+  ]
+}
