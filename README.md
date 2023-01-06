@@ -32,12 +32,15 @@
  
 <h3>Run the App: </h3>
 <ul>
+   <li>
+    npm install
+  </li>
   <li>
     npm start
   </li>
   <li>
     Open http://localhost:3000 to view it in your browser.
   </li>
-  <li> <a href="https://focusu.herokuapp.com/" target="blank">Online version</a> </li>
+  <li> <a href="https://jugurthamoad.github.io/PromodoFocus/" target="blank">Online version</a> </li>
   </ul>
  <br />
